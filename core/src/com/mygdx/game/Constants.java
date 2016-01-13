@@ -17,7 +17,7 @@ public class Constants {
     public static final float PADDLE_STARTING_POSITION_Y = 2.0f;
     public static final float PADDLE_MOVEMENT_SPEED = 10.0f;
 
-    // Brick
+    // Brick(s)
     public static final float BRICK_HEIGHT = 0.5f;
     public static final float BRICK_WIDTH = 1.0f;
     public static final Color BRICK_COLOR = Color.FIREBRICK;

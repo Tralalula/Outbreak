@@ -16,7 +16,7 @@ public class OutbreakScreen implements Screen {
     ExtendViewport outbreakViewport;
     ShapeRenderer renderer;
     Paddle paddle;
-    Brick brick;
+    Bricks bricks;
 
     @Override
     public void show() {
@@ -24,7 +24,7 @@ public class OutbreakScreen implements Screen {
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
         paddle = new Paddle(outbreakViewport);
-        brick = new Brick(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
+        bricks = new Bricks(outbreakViewport);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class OutbreakScreen implements Screen {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        brick.render(renderer);
+        bricks.render(renderer);
         paddle.render(renderer);
 
         renderer.end();
@@ -53,6 +53,7 @@ public class OutbreakScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         outbreakViewport.update(width, height, true);
+        bricks.init();
         paddle.init();
     }
 
@@ -73,6 +74,6 @@ public class OutbreakScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        renderer.dispose();
     }
 }
