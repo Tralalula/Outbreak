@@ -4,5 +4,6 @@ package com.mygdx.game;
  * Created by Tobias on 1/12/2016.
  */
 public class Paddle {
+    public static final String TAG = Paddle.class.getName();
 
 }

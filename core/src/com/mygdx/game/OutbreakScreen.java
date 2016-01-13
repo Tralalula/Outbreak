@@ -5,32 +5,50 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 /**
  * Created by Tobias on 1/12/2016.
  */
 public class OutbreakScreen implements Screen {
-    SpriteBatch batch;
-    Texture img;
+    public static final String TAG = OutbreakScreen.class.getName();
+
+    ExtendViewport outbreakViewport;
+    ShapeRenderer renderer;
+    Brick brick;
 
     @Override
     public void show() {
-        batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
+        outbreakViewport = new ExtendViewport(Constants.WORLD_SIZE, Constants.WORLD_SIZE);
+        renderer = new ShapeRenderer();
+        renderer.setAutoShapeType(true);
+        brick = new Brick(new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2));
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        outbreakViewport.apply(true);
+        Gdx.gl.glClearColor(
+                Constants.BACKGROUND_COLOR.r,
+                Constants.BACKGROUND_COLOR.g,
+                Constants.BACKGROUND_COLOR.b,
+                1
+        );
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
-        batch.draw(img, 0, 0);
-        batch.end();
+
+        renderer.setProjectionMatrix(outbreakViewport.getCamera().combined);
+
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        brick.render(renderer);
+        renderer.end();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        outbreakViewport.update(width, height, true);
     }
 
     @Override

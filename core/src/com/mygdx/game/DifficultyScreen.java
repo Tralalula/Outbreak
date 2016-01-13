@@ -6,6 +6,8 @@ import com.badlogic.gdx.Screen;
  * Created by tobi0958 on 1/12/2016.
  */
 public class DifficultyScreen implements Screen {
+    public static final String TAG = DifficultyScreen.class.getName();
+
     @Override
     public void show() {
 

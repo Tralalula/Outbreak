@@ -12,7 +12,12 @@ public class Constants {
 
     // Paddle
 
+
     // Bricks
+    public static final float BRICK_HEIGHT = 0.5f;
+    public static final float BRICK_WIDTH = 1.0f;
+    public static final Color BRICK_COLOR = Color.FIREBRICK;
 
     // Ball
+
 }
