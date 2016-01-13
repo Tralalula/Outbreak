@@ -23,5 +23,7 @@ public class Constants {
     public static final Color BRICK_COLOR = Color.FIREBRICK;
 
     // Ball
-
+    public static final Color BALL_COLOR = Color.FOREST;
+    public static final float BALL_RADIUS = 0.4f;
+    public static final int BALL_SEGMENTS = 20;
 }
