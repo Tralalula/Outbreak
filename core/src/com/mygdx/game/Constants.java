@@ -15,6 +15,7 @@ public class Constants {
     public static final float PADDLE_WIDTH = 4.0f;
     public static final Color PADDLE_COLOR = Color.NAVY;
     public static final float PADDLE_STARTING_POSITION_Y = 2.0f;
+    public static final float PADDLE_MOVEMENT_SPEED = 10.0f;
 
     // Brick
     public static final float BRICK_HEIGHT = 0.5f;

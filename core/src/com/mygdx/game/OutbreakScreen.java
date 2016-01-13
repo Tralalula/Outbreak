@@ -29,6 +29,8 @@ public class OutbreakScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        paddle.update(delta);
+
         outbreakViewport.apply(true);
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
