@@ -10,7 +10,7 @@ public class Constants {
     public static final float WORLD_SIZE = 10.0f;
     public static final Color BACKGROUND_COLOR = Color.BLACK;
 
-    // Paddle
+    // Player
     public static final float PADDLE_HEIGHT = 0.4f;
     public static final float PADDLE_WIDTH = 4.0f;
     public static final Color PADDLE_COLOR = Color.NAVY;

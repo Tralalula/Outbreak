@@ -60,7 +60,6 @@ public class Ball {
     public void init() {
         position = new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2);
         velocity = new Vector2(5.0f, 5.0f);
-//        System.out.println(" WORLD WIDTH = " + viewport.getWorldWidth() + " WORLD HEIGHT = " + viewport.getWorldHeight());
     }
 
     public void render(ShapeRenderer renderer) {
