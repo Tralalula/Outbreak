@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
@@ -38,7 +39,7 @@ public class OutbreakScreen implements Screen {
         ball.update(delta);
 
         if (player.hitByBall(ball)) {
-            System.out.println("Paddle - ball collision");
+            ball.velocity.y = -ball.velocity.y;
         }
 
         outbreakViewport.apply(true);
@@ -51,7 +52,6 @@ public class OutbreakScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(outbreakViewport.getCamera().combined);
-
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         bricks.render(renderer);
@@ -86,5 +86,6 @@ public class OutbreakScreen implements Screen {
     @Override
     public void dispose() {
         renderer.dispose();
+        batch.dispose();
     }
 }

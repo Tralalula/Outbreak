@@ -48,9 +48,10 @@ public class Player {
     public boolean hitByBall(Ball ball) {
         boolean isHit = false;
 
-        if (ball.position.x > this.position.x &&
-            ball.position.x < this.position.x + Constants.PADDLE_WIDTH &&
-            ball.position.y <= this.position.y + Constants.PADDLE_HEIGHT + Constants.BALL_RADIUS) {
+        if (ball.position.x >= this.position.x &&
+            ball.position.x <= this.position.x + Constants.PADDLE_WIDTH &&
+            ball.position.y <= this.position.y + Constants.PADDLE_HEIGHT + Constants.BALL_RADIUS &&
+            ball.position.y >= this.position.y - Constants.PADDLE_HEIGHT) {
             isHit = true;
         }
 
