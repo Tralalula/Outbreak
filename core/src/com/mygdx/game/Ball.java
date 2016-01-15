@@ -57,6 +57,20 @@ public class Ball {
         }
     }
 
+    public boolean detectBrickCollision(Bricks bricks) {
+        for (Brick brick : bricks.brickArray) {
+            if (this.position.x >= brick.position.x &&
+                this.position.x <= brick.position.x + Constants.BRICK_WIDTH &&
+                this.position.y <= brick.position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
+                this.position.y >= brick.position.y - Constants.BRICK_HEIGHT) {
+                brick.position.y = -Constants.BRICK_HEIGHT;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void init() {
         position = new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2);
         velocity = new Vector2(5.0f, 5.0f);

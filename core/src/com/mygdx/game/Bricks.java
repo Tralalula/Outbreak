@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
@@ -11,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Bricks {
     public static final String TAG = Bricks.class.getName();
 
-    Array<Brick> brickArray;
+    DelayedRemovalArray<Brick> brickArray;
     Viewport viewport;
 
     public Bricks(Viewport viewport) {
@@ -20,7 +21,7 @@ public class Bricks {
     }
 
     public void init() {
-        brickArray = new Array<Brick>();
+        brickArray = new DelayedRemovalArray<Brick>();
 
         int numRows = 5;
         int numCols = 8;
@@ -37,10 +38,19 @@ public class Bricks {
                 Vector2 brickPosition = new Vector2(xStartPosition, yStartPosition);
                 xStartPosition += xSpace;
                 brickArray.add(new Brick(brickPosition));
-//                System.out.println("Wut wut i = " + i + " j = " + j + " brick x pos = " + brickPosition.x + " brick y pos = " + brickPosition.y);
             }
             yStartPosition -= ySpace;
         }
+
+        brickArray.begin();
+
+        for (int i = 0; i < brickArray.size; i++) {
+            if (brickArray.get(i).position.y <= -Constants.BRICK_HEIGHT) {
+                brickArray.removeIndex(i);
+            }
+        }
+
+        brickArray.end();
     }
 
     public void render(ShapeRenderer renderer) {

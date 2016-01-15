@@ -42,6 +42,10 @@ public class OutbreakScreen implements Screen {
             ball.velocity.y = -ball.velocity.y;
         }
 
+        if (ball.detectBrickCollision(bricks)) {
+            ball.velocity.y = -ball.velocity.y;
+        }
+
         outbreakViewport.apply(true);
         Gdx.gl.glClearColor(
                 Constants.BACKGROUND_COLOR.r,
