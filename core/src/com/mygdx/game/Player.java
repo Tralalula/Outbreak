@@ -32,6 +32,10 @@ public class Player {
             position.x += delta * Constants.PADDLE_MOVEMENT_SPEED;
         }
 
+        float accelerometerInput = -Gdx.input.getAccelerometerY()
+                / (Constants.ACCELEROMETER_GRAVITATIONAL_ACCELERATION * Constants.ACCELEROMETER_SENSITIVITY);
+        position.x += -delta * accelerometerInput * Constants.PADDLE_MOVEMENT_SPEED;
+
         ensureInBounds();
     }
 

@@ -26,4 +26,8 @@ public class Constants {
     public static final Color BALL_COLOR = Color.FOREST;
     public static final float BALL_RADIUS = 0.4f;
     public static final int BALL_SEGMENTS = 20;
+
+    // Accelerometer
+    public static final float ACCELEROMETER_SENSITIVITY = 0.5f;
+    public static final float ACCELEROMETER_GRAVITATIONAL_ACCELERATION = 9.8f;
 }
