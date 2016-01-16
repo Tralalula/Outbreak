@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,9 +15,10 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 /**
  * Created by Tobias on 1/12/2016.
  */
-public class OutbreakScreen implements Screen {
+public class OutbreakScreen extends InputAdapter implements Screen {
     public static final String TAG = OutbreakScreen.class.getName();
 
+    OutbreakGame game;
     Constants.Difficulty difficulty;
     SpriteBatch batch;
     ScreenViewport hudViewport;
@@ -29,7 +31,8 @@ public class OutbreakScreen implements Screen {
 
     int score;
 
-    public OutbreakScreen(Constants.Difficulty difficulty) {
+    public OutbreakScreen(OutbreakGame game, Constants.Difficulty difficulty) {
+        this.game = game;
         this.difficulty = difficulty;
     }
 
@@ -124,5 +127,12 @@ public class OutbreakScreen implements Screen {
     public void dispose() {
         renderer.dispose();
         batch.dispose();
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        System.out.println("WHAT!");
+        game.showDifficultyScreen();
+        return true;
     }
 }

@@ -1,6 +1,9 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
+
+import java.util.Vector;
 
 /**
  * Created by Tobias on 1/12/2016.
@@ -9,7 +12,6 @@ public class Constants {
     // Game
     public static final float GAME_WORLD_SIZE = 10.0f;
     public static final Color GAME_BACKGROUND_COLOR = Color.BLACK;
-    public static final int GAME_NUM_OF_LIVES = 3;
 
     // Player
     public static final float PADDLE_HEIGHT = 0.4f;
@@ -37,6 +39,19 @@ public class Constants {
     public static final float HUD_MARGIN = 20.0f;
 
     // Difficulty
+    public static final float DIFFICULTY_WORLD_SIZE = 480.0f;
+    public static final float DIFFICULTY_BUBBLE_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
+    public static final float DIFFICULTY_LABEL_SCALE = 1.5f;
+
+    public static final Vector2 DIFFICULTY_EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 4, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 DIFFICULTY_MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 DIFFICULTY_HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 3 / 4, DIFFICULTY_WORLD_SIZE / 2);
+
+    public static final Color DIFFICULTY_EASY_COLOR = new Color(0.2f, 0.2f, 1, 1);
+    public static final Color DIFFICULTY_MEDIUM_COLOR = new Color(0.4f, 0.4f, 1, 1);
+    public static final Color DIFFICULTY_HARD_COLOR = new Color(0.6f, 0.6f, 1, 1);
+    public static final Color DIFFICULTY_HARDCORE_COLOR = new Color(0.8f, 0.8f, 1, 1);
+
     public static final String DIFFICULTY_EASY_LABEL = "Easy";
     public static final String DIFFICULTY_MEDIUM_LABEL = "Medium";
     public static final String DIFFICULTY_HARD_LABEL = "Hard";
