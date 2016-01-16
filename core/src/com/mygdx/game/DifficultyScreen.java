@@ -41,26 +41,45 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         font = new BitmapFont();
         font.getData().setScale(Constants.DIFFICULTY_LABEL_SCALE);
-        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        font.getRegion().getTexture().setFilter(
+                Texture.TextureFilter.Linear, Texture.TextureFilter.Linear
+        );
     }
 
     @Override
     public void render(float delta) {
         viewport.apply();
-        Gdx.gl.glClearColor(Constants.GAME_BACKGROUND_COLOR.r, Constants.GAME_BACKGROUND_COLOR.g, Constants.GAME_BACKGROUND_COLOR.b, 1);
+        Gdx.gl.glClearColor(
+                Constants.GAME_BACKGROUND_COLOR.r,
+                Constants.GAME_BACKGROUND_COLOR.g,
+                Constants.GAME_BACKGROUND_COLOR.b,
+                1
+        );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         renderer.setColor(Constants.DIFFICULTY_EASY_COLOR);
-        renderer.circle(Constants.DIFFICULTY_EASY_CENTER.x, Constants.DIFFICULTY_EASY_CENTER.y, Constants.DIFFICULTY_BUBBLE_RADIUS);
+        renderer.circle(
+                Constants.DIFFICULTY_EASY_CENTER.x,
+                Constants.DIFFICULTY_EASY_CENTER.y,
+                Constants.DIFFICULTY_BUBBLE_RADIUS
+        );
 
         renderer.setColor(Constants.DIFFICULTY_MEDIUM_COLOR);
-        renderer.circle(Constants.DIFFICULTY_MEDIUM_CENTER.x, Constants.DIFFICULTY_MEDIUM_CENTER.y, Constants.DIFFICULTY_BUBBLE_RADIUS);
+        renderer.circle(
+                Constants.DIFFICULTY_MEDIUM_CENTER.x,
+                Constants.DIFFICULTY_MEDIUM_CENTER.y,
+                Constants.DIFFICULTY_BUBBLE_RADIUS
+        );
 
         renderer.setColor(Constants.DIFFICULTY_HARD_COLOR);
-        renderer.circle(Constants.DIFFICULTY_HARD_CENTER.x, Constants.DIFFICULTY_HARD_CENTER.y, Constants.DIFFICULTY_BUBBLE_RADIUS);
+        renderer.circle(
+                Constants.DIFFICULTY_HARD_CENTER.x,
+                Constants.DIFFICULTY_HARD_CENTER.y,
+                Constants.DIFFICULTY_BUBBLE_RADIUS
+        );
 
         renderer.end();
 
@@ -68,13 +87,35 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         batch.begin();
 
         final GlyphLayout easyLayout = new GlyphLayout(font, Constants.DIFFICULTY_EASY_LABEL);
-        font.draw(batch, Constants.DIFFICULTY_EASY_LABEL, Constants.DIFFICULTY_EASY_CENTER.x, Constants.DIFFICULTY_EASY_CENTER.y + easyLayout.height / 2, 0, Align.center, false);
+        font.draw(
+                batch,
+                Constants.DIFFICULTY_EASY_LABEL,
+                Constants.DIFFICULTY_EASY_CENTER.x,
+                Constants.DIFFICULTY_EASY_CENTER.y + easyLayout.height / 2,
+                0,
+                Align.center,
+                false
+        );
 
         final GlyphLayout mediumLayout = new GlyphLayout(font, Constants.DIFFICULTY_MEDIUM_LABEL);
-        font.draw(batch, Constants.DIFFICULTY_MEDIUM_LABEL, Constants.DIFFICULTY_MEDIUM_CENTER.x, Constants.DIFFICULTY_MEDIUM_CENTER.y + mediumLayout.height / 2, 0, Align.center, false);
+        font.draw(batch,
+                Constants.DIFFICULTY_MEDIUM_LABEL,
+                Constants.DIFFICULTY_MEDIUM_CENTER.x,
+                Constants.DIFFICULTY_MEDIUM_CENTER.y + mediumLayout.height / 2,
+                0,
+                Align.center,
+                false
+        );
 
         final GlyphLayout hardLayout = new GlyphLayout(font, Constants.DIFFICULTY_HARD_LABEL);
-        font.draw(batch, Constants.DIFFICULTY_HARD_LABEL, Constants.DIFFICULTY_HARD_CENTER.x, Constants.DIFFICULTY_HARD_CENTER.y + hardLayout.height / 2, 0, Align.center, false);
+        font.draw(batch,
+                Constants.DIFFICULTY_HARD_LABEL,
+                Constants.DIFFICULTY_HARD_CENTER.x,
+                Constants.DIFFICULTY_HARD_CENTER.y + hardLayout.height / 2,
+                0,
+                Align.center,
+                false
+        );
 
         batch.end();
     }

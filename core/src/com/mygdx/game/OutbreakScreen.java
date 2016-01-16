@@ -20,11 +20,14 @@ public class OutbreakScreen extends InputAdapter implements Screen {
 
     OutbreakGame game;
     Constants.Difficulty difficulty;
-    SpriteBatch batch;
-    ScreenViewport hudViewport;
-    BitmapFont font;
+
     ExtendViewport outbreakViewport;
     ShapeRenderer renderer;
+
+    ScreenViewport hudViewport;
+    SpriteBatch batch;
+    BitmapFont font;
+
     Player player;
     Ball ball;
     Bricks bricks;
@@ -39,15 +42,25 @@ public class OutbreakScreen extends InputAdapter implements Screen {
     @Override
     public void show() {
         outbreakViewport = new ExtendViewport(Constants.GAME_WORLD_SIZE, Constants.GAME_WORLD_SIZE);
+
         renderer = new ShapeRenderer();
-        batch = new SpriteBatch();
         renderer.setAutoShapeType(true);
+
+        hudViewport = new ScreenViewport();
+        batch = new SpriteBatch();
+
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(
+                Texture.TextureFilter.Linear,
+                Texture.TextureFilter.Linear
+        );
+
         player = new Player(outbreakViewport);
         ball = new Ball(outbreakViewport, difficulty);
         bricks = new Bricks(outbreakViewport, difficulty);
-        hudViewport = new ScreenViewport();
-        font = new BitmapFont();
-        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        Gdx.input.setInputProcessor(this);
+
         score = 0;
     }
 
@@ -94,7 +107,15 @@ public class OutbreakScreen extends InputAdapter implements Screen {
                 0, Align.right, false);
 
         if (ball.numOfLives <= 0) {
-            font.draw(batch, "GAME OVER", hudViewport.getWorldWidth() / 2, hudViewport.getWorldHeight() / 2, 0, Align.left, false);
+            font.draw(
+                    batch,
+                    "GAME OVER",
+                    hudViewport.getWorldWidth() / 2,
+                    hudViewport.getWorldHeight() / 2,
+                    0,
+                    Align.left,
+                    false
+            );
         }
         batch.end();
     }
@@ -131,7 +152,6 @@ public class OutbreakScreen extends InputAdapter implements Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println("WHAT!");
         game.showDifficultyScreen();
         return true;
     }

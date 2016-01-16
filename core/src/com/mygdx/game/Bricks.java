@@ -32,7 +32,6 @@ public class Bricks {
 
         float xSpace = Constants.BRICK_WIDTH + 0.60416675f;
         float ySpace = Constants.BRICK_HEIGHT + 0.5f;
-        System.out.println("WORLD SIZE " + viewport.getWorldWidth());
         float initialXStartPosition = viewport.getWorldWidth() - (viewport.getWorldWidth() - 0.5f);
 
         float yStartPosition = Constants.GAME_WORLD_SIZE / 1.1f;

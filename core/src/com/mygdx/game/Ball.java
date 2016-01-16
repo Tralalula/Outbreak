@@ -69,7 +69,6 @@ public class Ball {
                     this.position.x <= bricks.brickArray.get(i).position.x + Constants.BRICK_WIDTH &&
                     this.position.y <= bricks.brickArray.get(i).position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
                     this.position.y >= bricks.brickArray.get(i).position.y - Constants.BRICK_HEIGHT) {
-                System.out.println("brick.position.y = " + bricks.brickArray.get(i).position.y + " -Constants.BRICK_HEIGHT = " + -Constants.BRICK_HEIGHT );
                 bricks.bricksDestroyed++;
                 bricks.brickArray.get(i).position.y = -Constants.BRICK_HEIGHT * 5;
                 bricks.brickArray.removeIndex(i);
