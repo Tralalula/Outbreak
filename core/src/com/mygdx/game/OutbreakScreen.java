@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class OutbreakScreen implements Screen {
     public static final String TAG = OutbreakScreen.class.getName();
 
+    Constants.Difficulty difficulty;
     SpriteBatch batch;
     ScreenViewport hudViewport;
     BitmapFont font;
@@ -28,6 +29,10 @@ public class OutbreakScreen implements Screen {
 
     int score;
 
+    public OutbreakScreen(Constants.Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
     @Override
     public void show() {
         outbreakViewport = new ExtendViewport(Constants.GAME_WORLD_SIZE, Constants.GAME_WORLD_SIZE);
@@ -35,8 +40,8 @@ public class OutbreakScreen implements Screen {
         batch = new SpriteBatch();
         renderer.setAutoShapeType(true);
         player = new Player(outbreakViewport);
-        ball = new Ball(outbreakViewport);
-        bricks = new Bricks(outbreakViewport);
+        ball = new Ball(outbreakViewport, difficulty);
+        bricks = new Bricks(outbreakViewport, difficulty);
         hudViewport = new ScreenViewport();
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -78,14 +83,14 @@ public class OutbreakScreen implements Screen {
         hudViewport.apply();
         batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
-        font.draw(batch, "Number of lives: " + ball.numLifes,
+        font.draw(batch, "Number of lives: " + ball.numOfLives + "\nDifficulty: " + difficulty.label,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
         font.draw(batch, "Score: " + bricks.bricksDestroyed,
                 hudViewport.getWorldWidth() - Constants.HUD_MARGIN,
                 hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
                 0, Align.right, false);
 
-        if (ball.numLifes <= 0) {
+        if (ball.numOfLives <= 0) {
             font.draw(batch, "GAME OVER", hudViewport.getWorldWidth() / 2, hudViewport.getWorldHeight() / 2, 0, Align.left, false);
         }
         batch.end();

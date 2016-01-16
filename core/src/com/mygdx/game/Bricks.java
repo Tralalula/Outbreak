@@ -11,11 +11,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Bricks {
     public static final String TAG = Bricks.class.getName();
 
+    Constants.Difficulty difficulty;
+
     int bricksDestroyed;
     DelayedRemovalArray<Brick> brickArray;
     Viewport viewport;
 
-    public Bricks(Viewport viewport) {
+    public Bricks(Viewport viewport, Constants.Difficulty difficulty) {
+        this.difficulty = difficulty;
         this.viewport = viewport;
         init();
     }

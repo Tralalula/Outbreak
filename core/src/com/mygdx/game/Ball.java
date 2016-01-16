@@ -9,14 +9,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 public class Ball {
     public static final String TAG = Ball.class.getName();
-
+    Constants.Difficulty difficulty;
     Vector2 position;
     Vector2 velocity;
     Viewport viewport;
-    int numLifes = Constants.GAME_NUM_OF_LIVES;
+    int numOfLives;
 
-    public Ball(Viewport viewport) {
+    public Ball(Viewport viewport, Constants.Difficulty difficulty) {
         this.viewport = viewport;
+        this.difficulty = difficulty;
+        numOfLives = difficulty.numOfLives;
         init();
     }
 
@@ -50,7 +52,7 @@ public class Ball {
         if (position.y - radius < 0) {
             position.y = radius;
             velocity.y = -velocity.y;
-            numLifes--;
+            numOfLives--;
             init();
         }
 
