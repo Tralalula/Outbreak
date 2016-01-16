@@ -13,8 +13,10 @@ public class Ball {
     Vector2 position;
     Vector2 velocity;
     Viewport viewport;
+    int deaths;
 
     public Ball(Viewport viewport) {
+        deaths = 0;
         this.viewport = viewport;
         init();
     }
@@ -49,6 +51,7 @@ public class Ball {
         if (position.y - radius < 0) {
             position.y = radius;
             velocity.y = -velocity.y;
+            deaths++;
         }
 
         if (position.y + radius > viewportHeight) {
@@ -58,21 +61,35 @@ public class Ball {
     }
 
     public boolean detectBrickCollision(Bricks bricks) {
-        for (Brick brick : bricks.brickArray) {
-            if (this.position.x >= brick.position.x &&
-                this.position.x <= brick.position.x + Constants.BRICK_WIDTH &&
-                this.position.y <= brick.position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
-                this.position.y >= brick.position.y - Constants.BRICK_HEIGHT) {
-                brick.position.y = -Constants.BRICK_HEIGHT;
+        bricks.brickArray.begin();
+        for (int i = 0; i < bricks.brickArray.size; i++) {
+            if (this.position.x >= bricks.brickArray.get(i).position.x &&
+                    this.position.x <= bricks.brickArray.get(i).position.x + Constants.BRICK_WIDTH &&
+                    this.position.y <= bricks.brickArray.get(i).position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
+                    this.position.y >= bricks.brickArray.get(i).position.y - Constants.BRICK_HEIGHT) {
+                System.out.println("brick.position.y = " + bricks.brickArray.get(i).position.y + " -Constants.BRICK_HEIGHT = " + -Constants.BRICK_HEIGHT );
+                bricks.bricksDestroyed++;
+                bricks.brickArray.get(i).position.y = -Constants.BRICK_HEIGHT * 5;
+                bricks.brickArray.removeIndex(i);
                 return true;
             }
         }
+        bricks.brickArray.end();
+//        for (Brick brick : bricks.brickArray) {
+//            if (this.position.x >= brick.position.x &&
+//                this.position.x <= brick.position.x + Constants.BRICK_WIDTH &&
+//                this.position.y <= brick.position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
+//                this.position.y >= brick.position.y - Constants.BRICK_HEIGHT) {
+//                System.out.println("brick.position.y = " + brick.position.y + " -Constants.BRICK_HEIGHT = " + -Constants.BRICK_HEIGHT );
+//                return true;
+//            }
+//        }
 
         return false;
     }
 
     public void init() {
-        position = new Vector2(Constants.WORLD_SIZE / 2, Constants.WORLD_SIZE / 2);
+        position = new Vector2(Constants.GAME_WORLD_SIZE / 2, Constants.GAME_WORLD_SIZE / 2);
         velocity = new Vector2(5.0f, 5.0f);
     }
 

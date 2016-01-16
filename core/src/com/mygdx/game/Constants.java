@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.Color;
  */
 public class Constants {
     // Game
-    public static final float WORLD_SIZE = 10.0f;
-    public static final Color BACKGROUND_COLOR = Color.BLACK;
+    public static final float GAME_WORLD_SIZE = 10.0f;
+    public static final Color GAME_BACKGROUND_COLOR = Color.BLACK;
 
     // Player
     public static final float PADDLE_HEIGHT = 0.4f;
@@ -30,4 +30,8 @@ public class Constants {
     // Accelerometer
     public static final float ACCELEROMETER_SENSITIVITY = 0.5f;
     public static final float ACCELEROMETER_GRAVITATIONAL_ACCELERATION = 9.8f;
+
+    // Hud
+    public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
+    public static final float HUD_MARGIN = 20.0f;
 }

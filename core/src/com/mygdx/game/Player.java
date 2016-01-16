@@ -58,7 +58,6 @@ public class Player {
             ball.position.y >= this.position.y - Constants.PADDLE_HEIGHT) {
             isHit = true;
         }
-
         return isHit;
     }
 
