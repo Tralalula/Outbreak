@@ -9,6 +9,7 @@ public class Constants {
     // Game
     public static final float GAME_WORLD_SIZE = 10.0f;
     public static final Color GAME_BACKGROUND_COLOR = Color.BLACK;
+    public static final int GAME_NUM_OF_LIVES = 3;
 
     // Player
     public static final float PADDLE_HEIGHT = 0.4f;

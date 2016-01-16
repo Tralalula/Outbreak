@@ -13,10 +13,9 @@ public class Ball {
     Vector2 position;
     Vector2 velocity;
     Viewport viewport;
-    int deaths;
+    int numLifes = Constants.GAME_NUM_OF_LIVES;
 
     public Ball(Viewport viewport) {
-        deaths = 0;
         this.viewport = viewport;
         init();
     }
@@ -51,7 +50,8 @@ public class Ball {
         if (position.y - radius < 0) {
             position.y = radius;
             velocity.y = -velocity.y;
-            deaths++;
+            numLifes--;
+            init();
         }
 
         if (position.y + radius > viewportHeight) {
@@ -75,15 +75,6 @@ public class Ball {
             }
         }
         bricks.brickArray.end();
-//        for (Brick brick : bricks.brickArray) {
-//            if (this.position.x >= brick.position.x &&
-//                this.position.x <= brick.position.x + Constants.BRICK_WIDTH &&
-//                this.position.y <= brick.position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
-//                this.position.y >= brick.position.y - Constants.BRICK_HEIGHT) {
-//                System.out.println("brick.position.y = " + brick.position.y + " -Constants.BRICK_HEIGHT = " + -Constants.BRICK_HEIGHT );
-//                return true;
-//            }
-//        }
 
         return false;
     }

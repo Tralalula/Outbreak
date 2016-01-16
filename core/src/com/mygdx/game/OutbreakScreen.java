@@ -78,12 +78,16 @@ public class OutbreakScreen implements Screen {
         hudViewport.apply();
         batch.setProjectionMatrix(hudViewport.getCamera().combined);
         batch.begin();
-        font.draw(batch, "Deaths: " + ball.deaths,
+        font.draw(batch, "Number of lives: " + ball.numLifes,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
         font.draw(batch, "Score: " + bricks.bricksDestroyed,
                 hudViewport.getWorldWidth() - Constants.HUD_MARGIN,
                 hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
                 0, Align.right, false);
+
+        if (ball.numLifes <= 0) {
+            font.draw(batch, "GAME OVER", hudViewport.getWorldWidth() / 2, hudViewport.getWorldHeight() / 2, 0, Align.left, false);
+        }
         batch.end();
     }
 
