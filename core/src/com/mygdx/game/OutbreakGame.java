@@ -7,11 +7,15 @@ public class OutbreakGame extends Game {
 
     @Override
     public void create() {
-        showDifficultyScreen();
+        showMenuScreen();
     }
 
     public void showDifficultyScreen() {
         setScreen(new DifficultyScreen(this));
+    }
+
+    public void showMenuScreen() {
+        setScreen(new MenuScreen(this));
     }
 
     public void showOutbreakScreen(Constants.Difficulty difficulty) {

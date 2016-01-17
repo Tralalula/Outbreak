@@ -152,7 +152,7 @@ public class OutbreakScreen extends InputAdapter implements Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        game.showDifficultyScreen();
+        game.showMenuScreen();
         return true;
     }
 }

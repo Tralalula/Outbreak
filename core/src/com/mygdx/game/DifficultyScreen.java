@@ -61,24 +61,24 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         renderer.setColor(Constants.DIFFICULTY_EASY_COLOR);
-        renderer.circle(
-                Constants.DIFFICULTY_EASY_CENTER.x,
-                Constants.DIFFICULTY_EASY_CENTER.y,
-                Constants.DIFFICULTY_BUBBLE_RADIUS
+        renderer.rect(
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                100, 50
         );
 
         renderer.setColor(Constants.DIFFICULTY_MEDIUM_COLOR);
-        renderer.circle(
-                Constants.DIFFICULTY_MEDIUM_CENTER.x,
-                Constants.DIFFICULTY_MEDIUM_CENTER.y,
-                Constants.DIFFICULTY_BUBBLE_RADIUS
+        renderer.rect(
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2 - 55,
+                100, 50
         );
 
         renderer.setColor(Constants.DIFFICULTY_HARD_COLOR);
-        renderer.circle(
-                Constants.DIFFICULTY_HARD_CENTER.x,
-                Constants.DIFFICULTY_HARD_CENTER.y,
-                Constants.DIFFICULTY_BUBBLE_RADIUS
+        renderer.rect(
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2 - 110,
+                100, 50
         );
 
         renderer.end();
@@ -90,8 +90,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         font.draw(
                 batch,
                 Constants.DIFFICULTY_EASY_LABEL,
-                Constants.DIFFICULTY_EASY_CENTER.x,
-                Constants.DIFFICULTY_EASY_CENTER.y + easyLayout.height / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2 + easyLayout.height / 2,
                 0,
                 Align.center,
                 false
@@ -100,8 +100,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         final GlyphLayout mediumLayout = new GlyphLayout(font, Constants.DIFFICULTY_MEDIUM_LABEL);
         font.draw(batch,
                 Constants.DIFFICULTY_MEDIUM_LABEL,
-                Constants.DIFFICULTY_MEDIUM_CENTER.x,
-                Constants.DIFFICULTY_MEDIUM_CENTER.y + mediumLayout.height / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2 - 55 + mediumLayout.height / 2,
                 0,
                 Align.center,
                 false
@@ -110,8 +110,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         final GlyphLayout hardLayout = new GlyphLayout(font, Constants.DIFFICULTY_HARD_LABEL);
         font.draw(batch,
                 Constants.DIFFICULTY_HARD_LABEL,
-                Constants.DIFFICULTY_HARD_CENTER.x,
-                Constants.DIFFICULTY_HARD_CENTER.y + hardLayout.height / 2,
+                Constants.DIFFICULTY_WORLD_SIZE / 2,
+                (Constants.DIFFICULTY_WORLD_SIZE / 2 - 110) + hardLayout.height / 2,
                 0,
                 Align.center,
                 false
@@ -151,15 +151,15 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
-        if (worldTouch.dst(Constants.DIFFICULTY_EASY_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+        if (worldTouch.dst(Constants.DIFFICULTY_EASY_CENTER) < 100) {
             game.showOutbreakScreen(Constants.Difficulty.EASY);
         }
 
-        if (worldTouch.dst(Constants.DIFFICULTY_MEDIUM_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+        if (worldTouch.dst(Constants.DIFFICULTY_MEDIUM_CENTER) < 100) {
             game.showOutbreakScreen(Constants.Difficulty.MEDIUM);
         }
 
-        if (worldTouch.dst(Constants.DIFFICULTY_HARD_CENTER) < Constants.DIFFICULTY_BUBBLE_RADIUS) {
+        if (worldTouch.dst(Constants.DIFFICULTY_HARD_CENTER) < 100) {
             game.showOutbreakScreen(Constants.Difficulty.HARD);
         }
 

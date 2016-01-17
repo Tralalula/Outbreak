@@ -43,9 +43,9 @@ public class Constants {
     public static final float DIFFICULTY_BUBBLE_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
     public static final float DIFFICULTY_LABEL_SCALE = 1.5f;
 
-    public static final Vector2 DIFFICULTY_EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 4, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 DIFFICULTY_MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
-    public static final Vector2 DIFFICULTY_HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE * 3 / 4, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 DIFFICULTY_EASY_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2);
+    public static final Vector2 DIFFICULTY_MEDIUM_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2 - 55);
+    public static final Vector2 DIFFICULTY_HARD_CENTER = new Vector2(DIFFICULTY_WORLD_SIZE / 2, DIFFICULTY_WORLD_SIZE / 2 - 110);
 
     public static final Color DIFFICULTY_EASY_COLOR = new Color(0.2f, 0.2f, 1, 1);
     public static final Color DIFFICULTY_MEDIUM_COLOR = new Color(0.4f, 0.4f, 1, 1);
