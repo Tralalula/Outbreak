@@ -53,7 +53,7 @@ public class MenuScreen implements Screen {
 
         createBasicSkin();
 
-        TextButton easyGameButton = new TextButton("Easy", skin);
+        TextButton easyGameButton = new TextButton(Constants.DIFFICULTY_EASY_LABEL, skin);
         easyGameButton.setPosition(
                 Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8,
                 Gdx.graphics.getHeight() / 2 + 50
@@ -67,7 +67,7 @@ public class MenuScreen implements Screen {
         });
         stage.addActor(easyGameButton);
 
-        TextButton mediumGameButton = new TextButton("Medium", skin);
+        TextButton mediumGameButton = new TextButton(Constants.DIFFICULTY_MEDIUM_LABEL, skin);
         mediumGameButton.setPosition(
                 Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8,
                 Gdx.graphics.getHeight() / 2
@@ -81,7 +81,7 @@ public class MenuScreen implements Screen {
         });
         stage.addActor(mediumGameButton);
 
-        TextButton hardGameButton = new TextButton("Hard", skin);
+        TextButton hardGameButton = new TextButton(Constants.DIFFICULTY_HARD_LABEL, skin);
         hardGameButton.setPosition(
                 Gdx.graphics.getWidth() / 2 - Gdx.graphics.getWidth() / 8,
                 Gdx.graphics.getHeight() / 2 - 50
@@ -98,7 +98,12 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(
+                Constants.GAME_BACKGROUND_COLOR.r,
+                Constants.GAME_BACKGROUND_COLOR.g,
+                Constants.GAME_BACKGROUND_COLOR.b,
+                1
+        );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();
@@ -122,7 +127,9 @@ public class MenuScreen implements Screen {
 
     @Override
     public void hide() {
-
+        stage.dispose();
+        skin.dispose();
+        font.dispose();
     }
 
     @Override
