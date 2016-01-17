@@ -14,6 +14,7 @@ public class Bricks {
     Constants.Difficulty difficulty;
 
     int bricksDestroyed;
+    int numOfBricksLeft;
     DelayedRemovalArray<Brick> brickArray;
     Viewport viewport;
 
@@ -29,6 +30,7 @@ public class Bricks {
         bricksDestroyed = 0;
         int numRows = 5;
         int numCols = 8;
+        numOfBricksLeft = numRows * numCols;
 
         float xSpace = Constants.BRICK_WIDTH + 0.60416675f;
         float ySpace = Constants.BRICK_HEIGHT + 0.5f;

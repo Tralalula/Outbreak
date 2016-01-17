@@ -70,6 +70,7 @@ public class Ball {
                     this.position.y <= bricks.brickArray.get(i).position.y + Constants.BRICK_HEIGHT + Constants.BALL_RADIUS &&
                     this.position.y >= bricks.brickArray.get(i).position.y - Constants.BRICK_HEIGHT) {
                 bricks.bricksDestroyed++;
+                bricks.numOfBricksLeft--;
                 bricks.brickArray.get(i).position.y = -Constants.BRICK_HEIGHT * 5;
                 bricks.brickArray.removeIndex(i);
                 return true;

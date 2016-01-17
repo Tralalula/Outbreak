@@ -21,4 +21,8 @@ public class OutbreakGame extends Game {
     public void showOutbreakScreen(Constants.Difficulty difficulty) {
         setScreen(new OutbreakScreen(this, difficulty));
     }
+
+    public void showVictoryScreen() {
+        setScreen(new VictoryScreen(this));
+    }
 }

@@ -77,6 +77,10 @@ public class OutbreakScreen extends InputAdapter implements Screen {
             ball.velocity.y = -ball.velocity.y;
         }
 
+        if (bricks.numOfBricksLeft <= 0) {
+            game.showVictoryScreen();
+        }
+
         outbreakViewport.apply(true);
         Gdx.gl.glClearColor(
                 Constants.GAME_BACKGROUND_COLOR.r,
@@ -101,7 +105,7 @@ public class OutbreakScreen extends InputAdapter implements Screen {
         batch.begin();
         font.draw(batch, "Number of lives: " + ball.numOfLives + "\nDifficulty: " + difficulty.label,
                 Constants.HUD_MARGIN, hudViewport.getWorldHeight() - Constants.HUD_MARGIN);
-        font.draw(batch, "Score: " + bricks.bricksDestroyed,
+        font.draw(batch, "Score: " + bricks.bricksDestroyed + "\nBricks left: " + bricks.numOfBricksLeft,
                 hudViewport.getWorldWidth() - Constants.HUD_MARGIN,
                 hudViewport.getWorldHeight() - Constants.HUD_MARGIN,
                 0, Align.right, false);
