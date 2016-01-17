@@ -25,4 +25,8 @@ public class OutbreakGame extends Game {
     public void showVictoryScreen() {
         setScreen(new VictoryScreen(this));
     }
+
+    public void showGameOverScreen() {
+        setScreen(new GameOverSreen(this));
+    }
 }
