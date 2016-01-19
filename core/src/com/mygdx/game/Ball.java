@@ -30,6 +30,7 @@ public class Ball {
 
         position.x += delta * velocity.x;
         position.y += delta * velocity.y;
+//        System.out.println("BALL FUCK = " + viewport.getWorldHeight());
 
         detectWallCollision(
                 Constants.BALL_RADIUS,
