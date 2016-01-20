@@ -56,6 +56,7 @@ public class Ball {
 
     private void checkPaddleCollision(Player player) {
         if (fakeBall.overlaps(player.getBounds())) {
+            position.set(position.x, player.getBounds().getY() + ball.getSize());
             velocity.y = -velocity.y;
         }
     }
