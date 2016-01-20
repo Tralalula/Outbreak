@@ -73,4 +73,8 @@ public class Ball {
     public StandardBall getBall() {
         return ball;
     }
+
+    public Rectangle getBounds() {
+        return fakeBall;
+    }
 }
