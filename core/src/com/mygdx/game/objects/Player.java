@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.objects.paddles.Paddle;
 import com.mygdx.game.utils.Constants;
@@ -18,7 +17,7 @@ public class Player {
     public static final String TAG = Player.class.getName();
 
     private Viewport viewport;
-    private Vector2 position;
+    Vector2 position;
     private Texture paddleTexture;
     private Paddle paddle;
     private Rectangle fakePaddle;
@@ -29,11 +28,10 @@ public class Player {
         paddleTexture = new Texture(Constants.PADDLE_TEXTURE);
         paddle = new Paddle(paddleTexture, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT);
         fakePaddle = new Rectangle(position.x, position.y, paddle.getWidth(), paddle.getHeight());
-        init();
     }
 
     public void init() {
-        position.x = (viewport.getWorldWidth() - Constants.PADDLE_WIDTH) / 2;
+        position.x = (viewport.getWorldWidth() - paddle.getWidth()) / 2;
 //        position.y = (viewport.getWorldHeight() - Constants.PADDLE_HEIGHT) / 2;
         position.y = viewport.getWorldHeight() / 12;
     }
@@ -45,7 +43,7 @@ public class Player {
             position.x += delta * Constants.PADDLE_MOVEMENT_SPEED;
         }
 
-        fakePaddle.setPosition(position.x, position.y);
+        fakePaddle.setPosition(position);
 
         ensureInBounds();
     }
@@ -72,5 +70,9 @@ public class Player {
 
     public Paddle getPaddle() {
         return paddle;
+    }
+
+    public Rectangle getBounds() {
+        return fakePaddle;
     }
 }

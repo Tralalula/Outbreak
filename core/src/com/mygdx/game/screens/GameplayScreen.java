@@ -3,11 +3,10 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.objects.Player;
-import com.mygdx.game.objects.paddles.Paddle;
+import com.mygdx.game.objects.Ball;
 import com.mygdx.game.utils.Constants;
 
 /**
@@ -18,7 +17,9 @@ public class GameplayScreen implements Screen {
 
     private ExtendViewport gameplayViewport;
     private SpriteBatch batch;
+
     private Player player;
+    private Ball ball;
 
     @Override
     public void show() {
@@ -28,12 +29,15 @@ public class GameplayScreen implements Screen {
         );
 
         batch = new SpriteBatch();
+
         player = new Player(gameplayViewport);
+        ball = new Ball(gameplayViewport);
     }
 
     @Override
     public void render(float delta) {
         player.update(delta);
+        ball.update(delta, player);
 
         gameplayViewport.apply();
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -43,6 +47,7 @@ public class GameplayScreen implements Screen {
         batch.begin();
 
         player.render(batch);
+        ball.render(batch);
 
         batch.end();
     }
@@ -51,6 +56,7 @@ public class GameplayScreen implements Screen {
     public void resize(int width, int height) {
         gameplayViewport.update(width, height, true);
         player.init();
+        ball.init();
     }
 
     @Override

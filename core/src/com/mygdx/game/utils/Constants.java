@@ -16,4 +16,8 @@ public class Constants {
     public static final int PADDLE_WIDTH = 100;
     public static final int PADDLE_HEIGHT = 20;
     public static final int PADDLE_MOVEMENT_SPEED = 200;
+
+    // Ball
+    public static final String BALL_TEXTURE = "ballBlack_08.png";
+    public static final int BALL_SIZE = 20;
 }
