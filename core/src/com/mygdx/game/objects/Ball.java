@@ -20,7 +20,6 @@ public class Ball {
     private Viewport viewport;
     private Vector2 position;
     private Vector2 velocity;
-    private Texture ballTexture;
     private StandardBall ball;
     private Rectangle fakeBall;
 
@@ -28,7 +27,7 @@ public class Ball {
         this.viewport = viewport;
         position = new Vector2();
         velocity = new Vector2(200, 200);
-        ballTexture = new Texture(Constants.BALL_TEXTURE);
+        Texture ballTexture = new Texture(Constants.BALL_TEXTURE);
         ball = new StandardBall(ballTexture, Constants.BALL_SIZE);
         fakeBall = new Rectangle(position.x, position.y, ball.getSize(), ball.getSize());
     }
@@ -61,7 +60,10 @@ public class Ball {
                 velocity.y = -velocity.y;
                 velocity.x = -velocity.x;
             } else if (position.x >= player.getBounds().getX() + player.getPaddle().getWidth()) {
-                position.set(player.getBounds().getX() + player.getPaddle().getWidth() + ball.getSize(), position.y);
+                position.set(
+                        player.getBounds().getX() + player.getPaddle().getWidth() + ball.getSize(),
+                        position.y
+                );
                 velocity.y = -velocity.y;
                 velocity.x = -velocity.x;
             } else if (position.y <= player.getBounds().getY()) {
@@ -76,7 +78,7 @@ public class Ball {
 
     public void render(SpriteBatch batch) {
         batch.draw(
-                ballTexture,
+                ball.getTexture(),
                 position.x,
                 position.y,
                 ball.getSize(),

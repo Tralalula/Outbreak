@@ -5,4 +5,5 @@ package com.mygdx.game.objects.bricks;
  */
 public class StoneBrick {
     public static final String TAG = StoneBrick.class.getName();
+
 }

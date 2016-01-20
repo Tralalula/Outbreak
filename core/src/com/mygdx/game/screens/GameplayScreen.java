@@ -3,10 +3,14 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.objects.Bricks;
 import com.mygdx.game.objects.Player;
 import com.mygdx.game.objects.Ball;
+import com.mygdx.game.objects.Brick;
 import com.mygdx.game.utils.Constants;
 
 /**
@@ -21,6 +25,10 @@ public class GameplayScreen implements Screen {
     private Player player;
     private Ball ball;
 
+    // TEST
+    private Brick brick;
+    private Bricks bricks;
+
     @Override
     public void show() {
         gameplayViewport = new ExtendViewport(
@@ -32,6 +40,10 @@ public class GameplayScreen implements Screen {
 
         player = new Player(gameplayViewport);
         ball = new Ball(gameplayViewport);
+
+        // TEST
+//        brick = new Brick(gameplayViewport);
+        bricks = new Bricks(gameplayViewport);
     }
 
     @Override
@@ -40,7 +52,12 @@ public class GameplayScreen implements Screen {
         ball.update(delta, player);
 
         gameplayViewport.apply();
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(
+                Constants.GAME_BACKGROUND_COLOR.r,
+                Constants.GAME_BACKGROUND_COLOR.g,
+                Constants.GAME_BACKGROUND_COLOR.b,
+                1
+        );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(gameplayViewport.getCamera().combined);
@@ -48,6 +65,11 @@ public class GameplayScreen implements Screen {
 
         player.render(batch);
         ball.render(batch);
+
+        // TEST
+//        brick.render(batch);
+        System.out.println(gameplayViewport.getWorldWidth());
+        bricks.render(batch);
 
         batch.end();
     }
@@ -57,6 +79,10 @@ public class GameplayScreen implements Screen {
         gameplayViewport.update(width, height, true);
         player.init();
         ball.init();
+
+        // TEST
+//        brick.init();
+        bricks.init();
     }
 
     @Override
@@ -78,5 +104,6 @@ public class GameplayScreen implements Screen {
     public void dispose() {
         batch.dispose();
         player.getPaddle().getTexture().dispose();
+        ball.getBall().getTexture().dispose();
     }
 }

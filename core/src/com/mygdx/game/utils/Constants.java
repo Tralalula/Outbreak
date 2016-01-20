@@ -1,5 +1,6 @@
 package com.mygdx.game.utils;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -10,6 +11,7 @@ public class Constants {
 
     // Game
     public static final int GAME_WORLD_SIZE = 320;
+    public static final Color GAME_BACKGROUND_COLOR = Color.SKY;
 
     // Paddle
     public static final String PADDLE_TEXTURE = "paddle_02.png";
@@ -20,4 +22,12 @@ public class Constants {
     // Ball
     public static final String BALL_TEXTURE = "ballBlack_08.png";
     public static final int BALL_SIZE = 20;
+
+    // Brick
+    public static final String BRICK_TEXTURE = "tileGrey_14.png";
+    public static final int BRICK_WIDTH = 40;
+    public static final int BRICK_HEIGHT = 20;
+    public static final int BRICK_NUM_ROWS = 5;
+    public static final int BRICK_NUM_COLS = 8;
+    public static final int BRICK_MARGIN = 5;
 }

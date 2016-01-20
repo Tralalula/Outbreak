@@ -17,15 +17,14 @@ public class Player {
     public static final String TAG = Player.class.getName();
 
     private Viewport viewport;
-    Vector2 position;
-    private Texture paddleTexture;
+    private Vector2 position;
     private Paddle paddle;
     private Rectangle fakePaddle;
 
     public Player(Viewport viewport) {
         this.viewport = viewport;
         position = new Vector2();
-        paddleTexture = new Texture(Constants.PADDLE_TEXTURE);
+        Texture paddleTexture = new Texture(Constants.PADDLE_TEXTURE);
         paddle = new Paddle(paddleTexture, Constants.PADDLE_WIDTH, Constants.PADDLE_HEIGHT);
         fakePaddle = new Rectangle(position.x, position.y, paddle.getWidth(), paddle.getHeight());
     }
