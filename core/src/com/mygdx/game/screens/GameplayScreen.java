@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.Hud;
 import com.mygdx.game.objects.Bricks;
 import com.mygdx.game.objects.Player;
 import com.mygdx.game.objects.Ball;
@@ -21,6 +22,9 @@ public class GameplayScreen implements Screen {
     private ExtendViewport gameplayViewport;
     private SpriteBatch batch;
 
+    Hud hud;
+    ExtendViewport hudViewport;
+
     private CollisionDetector collisionDetector;
 
     private Player player;
@@ -34,6 +38,12 @@ public class GameplayScreen implements Screen {
                 Constants.GAME_WORLD_SIZE
         );
         batch = new SpriteBatch();
+
+        hudViewport = new ExtendViewport(
+                Constants.HUD_VIEWPORT_WIDTH,
+                Constants.HUD_VIEWPORT_HEIGHT
+        );
+        hud = new Hud(hudViewport);
 
         collisionDetector = new CollisionDetector();
 
@@ -64,6 +74,14 @@ public class GameplayScreen implements Screen {
         player.render(batch);
         ball.render(batch);
         bricks.render(batch);
+
+        batch.end();
+
+        hudViewport.apply();
+        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+        batch.begin();
+
+        hud.render(batch);
 
         batch.end();
     }
@@ -135,6 +153,7 @@ public class GameplayScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         gameplayViewport.update(width, height, true);
+        hudViewport.update(width, height, true);
         player.init();
         ball.init();
         bricks.init();

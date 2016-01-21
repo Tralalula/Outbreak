@@ -37,4 +37,8 @@ public class Constants {
     public static final String COLLISION_DETECTOR_BOTTOM = "BOTTOM";
     public static final String COLLISION_DETECTOR_TOP = "TOP";
     public static final String COLLISION_DETECTOR_NONE = "NONE";
+
+    // Hud
+    public static final int HUD_VIEWPORT_WIDTH = 640;
+    public static final int HUD_VIEWPORT_HEIGHT = 480;
 }
