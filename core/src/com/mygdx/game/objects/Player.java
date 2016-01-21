@@ -43,20 +43,7 @@ public class Player {
         }
 
         fakePaddle.setPosition(position);
-
-        ensureInBounds();
     }
-
-    private void ensureInBounds() {
-        if (position.x < 0) {
-            position.x = 0;
-        }
-
-        if (position.x + paddle.getWidth() > viewport.getWorldWidth()) {
-            position.x = viewport.getWorldWidth() - paddle.getWidth();
-        }
-    }
-
     public void render(SpriteBatch batch) {
         batch.draw(
                 paddle.getTexture(),
@@ -73,5 +60,33 @@ public class Player {
 
     public Rectangle getBounds() {
         return fakePaddle;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public float getX() {
+        return position.x;
+    }
+
+    public float getY() {
+        return position.y;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public void setPosition(float x, float y) {
+        setPosition(new Vector2(x, y));
+    }
+
+    public void setX(float x) {
+        position.x = x;
+    }
+
+    public void setY(float y) {
+        position.y = y;
     }
 }

@@ -30,4 +30,11 @@ public class Constants {
     public static final int BRICK_NUM_ROWS = 5;
     public static final int BRICK_NUM_COLS = 8;
     public static final int BRICK_MARGIN = 5;
+
+    // CollisionDetector
+    public static final String COLLISION_DETECTOR_LEFT = "LEFT";
+    public static final String COLLISION_DETECTOR_RIGHT = "RIGHT";
+    public static final String COLLISION_DETECTOR_BOTTOM = "BOTTOM";
+    public static final String COLLISION_DETECTOR_TOP = "TOP";
+    public static final String COLLISION_DETECTOR_NONE = "NONE";
 }

@@ -3,14 +3,13 @@ package com.mygdx.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.objects.Bricks;
 import com.mygdx.game.objects.Player;
 import com.mygdx.game.objects.Ball;
 import com.mygdx.game.objects.Brick;
+import com.mygdx.game.utils.CollisionDetector;
 import com.mygdx.game.utils.Constants;
 
 /**
@@ -22,6 +21,8 @@ public class GameplayScreen implements Screen {
     private ExtendViewport gameplayViewport;
     private SpriteBatch batch;
 
+    private CollisionDetector collisionDetector;
+
     private Player player;
     private Ball ball;
     private Bricks bricks;
@@ -32,8 +33,9 @@ public class GameplayScreen implements Screen {
                 Constants.GAME_WORLD_SIZE,
                 Constants.GAME_WORLD_SIZE
         );
-
         batch = new SpriteBatch();
+
+        collisionDetector = new CollisionDetector();
 
         player = new Player(gameplayViewport);
         ball = new Ball(gameplayViewport);
@@ -43,7 +45,9 @@ public class GameplayScreen implements Screen {
     @Override
     public void render(float delta) {
         player.update(delta);
-        ball.update(delta, player, bricks);
+        ball.update(delta);
+
+        collisionManager();
 
         gameplayViewport.apply();
         Gdx.gl.glClearColor(
@@ -62,6 +66,66 @@ public class GameplayScreen implements Screen {
         bricks.render(batch);
 
         batch.end();
+    }
+
+    private void collisionManager() {
+        int brickIndex = collisionDetector.checkBrickCollision(ball.getBounds(), bricks);
+        if (brickIndex != -1) {
+            bricks.getBricks().removeIndex(brickIndex);
+            ball.reverseYVelocity();
+        }
+
+        String paddleSide = collisionDetector.checkRectangleCollision(
+                ball.getBounds(),
+                player.getBounds()
+        );
+        if (paddleSide != Constants.COLLISION_DETECTOR_NONE) {
+            if (paddleSide == Constants.COLLISION_DETECTOR_LEFT) {
+                ball.setX(player.getBounds().getX() - ball.getSize());
+                ball.reverseVelocity();
+            } else if (paddleSide == Constants.COLLISION_DETECTOR_RIGHT) {
+                ball.setX(player.getBounds().getX() + player.getPaddle().getWidth() + ball.getSize());
+                ball.reverseVelocity();
+            } else if (paddleSide == Constants.COLLISION_DETECTOR_BOTTOM) {
+                ball.setY(player.getBounds().getY() - ball.getSize());
+                ball.reverseYVelocity();
+            } else {
+                ball.setY(player.getBounds().getY() + ball.getSize());
+                ball.reverseYVelocity();
+            }
+        }
+
+        String ballWallCollision = collisionDetector.checkWallCollision(
+                gameplayViewport,
+                ball.getBounds()
+        );
+        if (ballWallCollision == Constants.COLLISION_DETECTOR_LEFT) {
+            ball.reverseXVelocity();
+        }
+
+        if (ballWallCollision == Constants.COLLISION_DETECTOR_RIGHT) {
+            ball.reverseXVelocity();
+        }
+
+        if (ballWallCollision == Constants.COLLISION_DETECTOR_BOTTOM) {
+            ball.reverseYVelocity();
+        }
+
+        if (ballWallCollision == Constants.COLLISION_DETECTOR_TOP) {
+            ball.reverseYVelocity();
+        }
+
+        String playerWallCollision = collisionDetector.checkWallCollision(
+                gameplayViewport,
+                player.getBounds()
+        );
+        if (playerWallCollision == Constants.COLLISION_DETECTOR_LEFT) {
+            player.setX(0);
+        }
+
+        if (playerWallCollision == Constants.COLLISION_DETECTOR_RIGHT) {
+            player.setX(gameplayViewport.getWorldWidth() - player.getPaddle().getWidth());
+        }
     }
 
     @Override

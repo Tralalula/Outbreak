@@ -2,14 +2,12 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.objects.balls.StandardBall;
+import com.mygdx.game.utils.CollisionDetector;
 import com.mygdx.game.utils.Constants;
-
-import java.util.Collection;
 
 /**
  * Created by Tobias on 20-01-2016.
@@ -37,53 +35,10 @@ public class Ball {
         position.y = (viewport.getWorldHeight() - ball.getSize()) / 2;
     }
 
-    public void update(float delta, Player player, Bricks bricks) {
+    public void update(float delta) {
         position.mulAdd(velocity, delta);
 
         fakeBall.setPosition(position);
-
-        ensureInBounds();
-        checkPaddleCollision(player);
-        checkBrickCollision(bricks);
-    }
-
-    private void ensureInBounds() {
-        if (position.x < 0) velocity.x = -velocity.x;
-        if (position.x + ball.getSize() > viewport.getWorldWidth()) velocity.x = -velocity.x;
-        if (position.y < 0) velocity.y = -velocity.y;
-        if (position.y + ball.getSize() > viewport.getWorldHeight()) velocity.y = -velocity.y;
-    }
-
-    private void checkPaddleCollision(Player player) {
-        if (fakeBall.overlaps(player.getBounds())) {
-            if (position.x <= player.getBounds().getX()) {
-                position.set(player.getBounds().getX() - ball.getSize(), position.y);
-                velocity.y = -velocity.y;
-                velocity.x = -velocity.x;
-            } else if (position.x >= player.getBounds().getX() + player.getPaddle().getWidth()) {
-                position.set(
-                        player.getBounds().getX() + player.getPaddle().getWidth() + ball.getSize(),
-                        position.y
-                );
-                velocity.y = -velocity.y;
-                velocity.x = -velocity.x;
-            } else if (position.y <= player.getBounds().getY()) {
-                position.set(position.x, player.getBounds().getY() - ball.getSize());
-                velocity.y = -velocity.y;
-            } else {
-                position.set(position.x, player.getBounds().getY() + ball.getSize());
-                velocity.y = -velocity.y;
-            }
-        }
-    }
-
-    private void checkBrickCollision(Bricks bricks) {
-        for (int i = 0; i < bricks.getBricks().size; i++) {
-            if (fakeBall.overlaps(bricks.getBricks().get(i).getBounds())) {
-                velocity.y = -velocity.y;
-                bricks.getBricks().removeIndex(i);
-            }
-        }
     }
 
     public void render(SpriteBatch batch) {
@@ -102,5 +57,77 @@ public class Ball {
 
     public Rectangle getBounds() {
         return fakeBall;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public float getX() {
+        return position.x;
+    }
+
+    public float getY() {
+        return position.y;
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public float getXVelocity() {
+        return velocity.x;
+    }
+
+    public float getYVelocity() {
+        return velocity.y;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public void setPosition(float x, float y) {
+        setPosition(new Vector2(x, y));
+    }
+
+    public void setX(float x) {
+        position.x = x;
+    }
+
+    public void setY(float y) {
+        position.y = y;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
+    public void setVelocity(float x, float y) {
+        setVelocity(new Vector2(x, y));
+    }
+
+    public void setXVelocity(float x) {
+        velocity.x = x;
+    }
+
+    public void setYVelocity(float y) {
+        velocity.y = y;
+    }
+
+    public void reverseVelocity() {
+        setVelocity(-velocity.x, -velocity.y);
+    }
+
+    public void reverseXVelocity() {
+        velocity.x = -velocity.x;
+    }
+
+    public void reverseYVelocity() {
+        velocity.y = -velocity.y;
+    }
+
+    public float getSize() {
+        return ball.getSize();
     }
 }
