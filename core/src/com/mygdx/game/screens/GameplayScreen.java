@@ -100,18 +100,22 @@ public class GameplayScreen implements Screen {
                 ball.getBounds()
         );
         if (ballWallCollision == Constants.COLLISION_DETECTOR_LEFT) {
+            ball.setX(0);
             ball.reverseXVelocity();
         }
 
         if (ballWallCollision == Constants.COLLISION_DETECTOR_RIGHT) {
+            ball.setX(gameplayViewport.getWorldWidth() - ball.getSize());
             ball.reverseXVelocity();
         }
 
         if (ballWallCollision == Constants.COLLISION_DETECTOR_BOTTOM) {
+            ball.setY(0);
             ball.reverseYVelocity();
         }
 
         if (ballWallCollision == Constants.COLLISION_DETECTOR_TOP) {
+            ball.setY(gameplayViewport.getWorldHeight() - ball.getSize());
             ball.reverseYVelocity();
         }
 
