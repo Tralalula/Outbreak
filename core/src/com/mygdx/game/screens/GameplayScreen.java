@@ -24,9 +24,6 @@ public class GameplayScreen implements Screen {
 
     private Player player;
     private Ball ball;
-
-    // TEST
-    private Brick brick;
     private Bricks bricks;
 
     @Override
@@ -40,16 +37,13 @@ public class GameplayScreen implements Screen {
 
         player = new Player(gameplayViewport);
         ball = new Ball(gameplayViewport);
-
-        // TEST
-//        brick = new Brick(gameplayViewport);
         bricks = new Bricks(gameplayViewport);
     }
 
     @Override
     public void render(float delta) {
         player.update(delta);
-        ball.update(delta, player);
+        ball.update(delta, player, bricks);
 
         gameplayViewport.apply();
         Gdx.gl.glClearColor(
@@ -65,10 +59,6 @@ public class GameplayScreen implements Screen {
 
         player.render(batch);
         ball.render(batch);
-
-        // TEST
-//        brick.render(batch);
-        System.out.println(gameplayViewport.getWorldWidth());
         bricks.render(batch);
 
         batch.end();
@@ -79,9 +69,6 @@ public class GameplayScreen implements Screen {
         gameplayViewport.update(width, height, true);
         player.init();
         ball.init();
-
-        // TEST
-//        brick.init();
         bricks.init();
     }
 
@@ -105,5 +92,8 @@ public class GameplayScreen implements Screen {
         batch.dispose();
         player.getPaddle().getTexture().dispose();
         ball.getBall().getTexture().dispose();
+        for (Brick brick : bricks.getBricks()) {
+            brick.getTexture().dispose();
+        }
     }
 }

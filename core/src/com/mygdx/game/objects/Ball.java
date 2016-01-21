@@ -37,13 +37,14 @@ public class Ball {
         position.y = (viewport.getWorldHeight() - ball.getSize()) / 2;
     }
 
-    public void update(float delta, Player player) {
+    public void update(float delta, Player player, Bricks bricks) {
         position.mulAdd(velocity, delta);
 
         fakeBall.setPosition(position);
 
         ensureInBounds();
         checkPaddleCollision(player);
+        checkBrickCollision(bricks);
     }
 
     private void ensureInBounds() {
@@ -72,6 +73,15 @@ public class Ball {
             } else {
                 position.set(position.x, player.getBounds().getY() + ball.getSize());
                 velocity.y = -velocity.y;
+            }
+        }
+    }
+
+    private void checkBrickCollision(Bricks bricks) {
+        for (int i = 0; i < bricks.getBricks().size; i++) {
+            if (fakeBall.overlaps(bricks.getBricks().get(i).getBounds())) {
+                velocity.y = -velocity.y;
+                bricks.getBricks().removeIndex(i);
             }
         }
     }

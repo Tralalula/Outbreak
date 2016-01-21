@@ -16,11 +16,12 @@ public class Brick {
 
     private Vector2 position;
     private StandardBrick brick;
+    private Texture brickTexture;
     private Rectangle fakeBrick;
 
     public Brick(Vector2 position) {
         this.position = position;
-        Texture brickTexture = new Texture(Constants.BRICK_TEXTURE);
+        brickTexture = new Texture(Constants.BRICK_TEXTURE);
         brick = new StandardBrick(brickTexture, Constants.BRICK_WIDTH, Constants.BRICK_HEIGHT);
         fakeBrick = new Rectangle(position.x, position.y, brick.getWidth(), brick.getHeight());
     }
@@ -57,5 +58,9 @@ public class Brick {
 
     public Rectangle getBounds() {
         return fakeBrick;
+    }
+
+    public Texture getTexture() {
+        return brickTexture;
     }
 }

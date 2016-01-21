@@ -3,6 +3,7 @@ package com.mygdx.game.objects;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.utils.Constants;
@@ -14,7 +15,7 @@ public class Bricks {
     public static final String TAG = Brick.class.getName();
 
     private Viewport viewport;
-    private DelayedRemovalArray<Brick> brickArray;
+    private Array<Brick> brickArray;
 
     public Bricks(Viewport viewport) {
         this.viewport = viewport;
@@ -49,5 +50,9 @@ public class Bricks {
         for (Brick brick : brickArray) {
             brick.render(batch);
         }
+    }
+
+    public Array<Brick> getBricks() {
+        return brickArray;
     }
 }
