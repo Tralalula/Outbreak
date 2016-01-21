@@ -1,6 +1,5 @@
 package com.mygdx.game.objects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -29,7 +28,7 @@ public class Bricks {
 
         Vector2 initialPosition = new Vector2(
                 brickMargin,
-                viewport.getWorldHeight() - Constants.BRICK_HEIGHT - Constants.BRICK_MARGIN
+                viewport.getWorldHeight() - Constants.BRICK_HEIGHT - Constants.BRICK_TOP_MARGIN
         );
 
 //        int numCols = (int) viewport.getWorldWidth() / (Constants.BRICK_WIDTH + Constants.BRICK_MARGIN);
