@@ -13,6 +13,11 @@ public class Constants {
     public static final int GAME_WORLD_SIZE = 320;
     public static final Color GAME_BACKGROUND_COLOR = Color.SKY;
 
+    // Text
+    public static final String TEXT_NUMBER_OF_LIVES_LEFT = "Number of lives left";
+    public static final String TEXT_NUMBER_OF_BRICKS_LEFT = "Number of bricks left";
+    public static final String TEXT_DIFFICULTY = "Difficulty";
+
     // Paddle
     public static final String PADDLE_TEXTURE = "paddle_02.png";
     public static final int PADDLE_WIDTH = 100;
@@ -29,7 +34,7 @@ public class Constants {
     public static final int BRICK_HEIGHT = 20;
     public static final int BRICK_NUM_ROWS = 5;
     public static final int BRICK_NUM_COLS = 8;
-    public static final int BRICK_MARGIN = 5;
+    public static final int BRICK_MARGIN = 15;
 
     // CollisionDetector
     public static final String COLLISION_DETECTOR_LEFT = "LEFT";
@@ -39,6 +44,7 @@ public class Constants {
     public static final String COLLISION_DETECTOR_NONE = "NONE";
 
     // Hud
-    public static final int HUD_VIEWPORT_WIDTH = 640;
-    public static final int HUD_VIEWPORT_HEIGHT = 480;
+    public static final int HUD_VIEWPORT_WIDTH = 320;
+    public static final int HUD_VIEWPORT_HEIGHT = 320;
+    public static final int HUD_MARGIN = 5;
 }
